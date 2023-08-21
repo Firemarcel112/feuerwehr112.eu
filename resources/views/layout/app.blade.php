@@ -5,28 +5,48 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>{{$pageTitle ?? env('APP_NAME')}}</title>
-
 		{{-- Fonts --}}
 
 		{{-- Styles --}}
-		<link rel="stylesheet" href="{{asset('styles/styles.css')}}">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler-flags.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler-payments.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler-vendors.min.css">
+		<link rel="stylesheet" href="{{asset('css/custom-styles.css')}}">
 
 		{{-- Scripts --}}
-
+		{{-- <script type="text/javascript" src="{{asset('bootstrapjs/bootstrap.bundle.min.js')}}"></script> --}}
+		<script src="{{asset('js/tabler.min.js')}}" defer></script>
+		<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+		<script>
+		</script>
 	</head>
 
-	<body class="antialiased">
+	<body class="antialiased fw112-body">
 
-		<header>
+		<div class="page page-wrapper">
+			@include('layout.header')
 
-		</header>
-
-		<main>
-			@yield('main:content')
-		</main>
-
-		<footer>
-
-		</footer>
-
+			<main>
+				<div class="page-header d-print-none">
+					<div class="container-xl">
+						<div class="row g-2 align-items-center">
+						<div class="col">
+							<div class="page-pretitle">
+								{{$area?? env('APP_NAME')}}
+							</div>
+							<h2 class="page-title">
+								{{$pageTitle?? env('APP_NAME')}}
+							</h2>
+						</div>
+						@yield('header:actions')
+						</div>
+					</div>
+				</div>
+				<div class="page-body">
+					@yield('app:content')
+				</div>
+			</main>
+			@include('layout.footer')
+		</div>
 	</body>
