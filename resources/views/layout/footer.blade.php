@@ -27,7 +27,7 @@
 					<a href="." class="link-secondary">{{env('APP_NAME')}}</a>
 				</li>
 				{{-- <li class="list-inline-item"> --}}
-					{{-- ChangeLog einbauen --}}
+					{{-- @TODO ChangeLog einbauen --}}
 					{{-- <a href="./changelog.html" class="link-secondary" rel="noopener">
 					v1.0.0-beta19
 					</a> --}}

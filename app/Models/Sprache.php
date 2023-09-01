@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 
 class Sprache extends BaseModel
 {
@@ -15,6 +16,26 @@ class Sprache extends BaseModel
 		'bezeichnung',
 	];
 
+	########################
+	# CUSTOM FUNCTIONS
+	########################
+
+	########################
+	# SCOPES
+	########################
+
+	public function scopeisCode(Builder $query, string $code)
+	{
+		return $query->where('code', $code);
+	}
+
+	########################
+	# RELATIONS
+	########################
+
+	########################
+	# GET & SET
+	########################
 
 	public function setId(int $id) : void
 	{

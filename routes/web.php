@@ -1,18 +1,35 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\PasswordVergessenController;
+use App\Http\Controllers\Auth\RegistrierenController;
+Use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
-Route::get('/', function () {
-	return view('welcome');
+Route::fallback(function(Request $request)
+{
+	if(config('app.debug'))
+	{
+		dd($request);
+	}
+	echo 'TODO: errorpage';
+
+});
+
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/translations', [\Barryvdh\TranslationManager\Controller::class, 'getIndex'])->name('translations');
+
+Route::controller(LoginController::class)->group(function(){
+	Route::get('login', 'index')->name('login');
+});
+
+Route::controller(RegistrierenController::class)->group(function()
+{
+	Route::get('registrieren', 'index')->name('registrieren');
+});
+
+Route::controller(PasswordVergessenController::class)->group(function()
+{
+	Route::get('passwort-vergessen', 'index')->name('passwort_vergessen');
 });
