@@ -12,7 +12,7 @@ return new class extends Migration
 	public function up(): void
 	{
 		Schema::create('sprachen', function (Blueprint $table) {
-			$table->tinyInteger('id', true)->primary();
+			$table->tinyInteger('id')->autoIncrement();
 			$table->char('code', 2);
 			$table->string('bezeichnung', 20);
 			$table->timestamps();

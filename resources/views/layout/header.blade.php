@@ -10,27 +10,11 @@
 				</a>
 		</h1>
 		<div class="flex-row navbar-nav order-md-last">
-			{{-- Tag und Nachtmodus umschalten --}}
-			<div class="d-flex">
-					<a class="px-0 cursor-pointer nav-link toggle-theme" title="{{__('general.tag_nacht_modus_umschalten')}}" data-bs-toggle="tooltip" data-bs-placement="bottom">
-						@include('standard.icons.sun')
-						@include('standard.icons.moon')
-					</a>
-					<div class="nav-item dropdown d-flex ms-1 me-2">
-						<span class="flag flag-country-{{App::getLocale()}} cursor-pointer" data-bs-toggle="dropdown"></span>
-						<div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end">
-							<div class="list-group list-group-flush">
-								@foreach($sprachen as $sprache)
-								<a href="?language={{$sprache->getCode()}}" class="cursor-pointer list-group-item">
-									<span class="flag flag-country-{{$sprache->getCode()}}"></span>
-									<span class="ms-2">{{$sprache->getBezeichnung()}}</span>
-								</a>
-
-							@endforeach
-							</div>
-
-						</div>
-					</div>
+			<div class="d-flex justify-content-center">
+				<div class="nav-item">
+					<x-tag-nacht-toggle />
+				</div>
+					<x-sprachen-toggle />
 			</div>
 			@auth
 					{{-- Benachrichtigung --}}
@@ -72,7 +56,7 @@
 			@endauth
 			@guest
 					<div class="nav-item">
-						<a class="nav-link" href="#">{{__('general.menu.anmelden_registrieren')}}</a>
+						<a class="nav-link" href="{{route('login')}}">{{__('general.menu.anmelden_registrieren')}}</a>
 					</div>
 			@endguest
 		</div>
