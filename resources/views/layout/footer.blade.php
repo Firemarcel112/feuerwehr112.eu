@@ -5,17 +5,12 @@
 			<ul class="mb-0 list-inline list-inline-dots">
 				<li class="list-inline-item">
 					<a class="link-secondary" rel="noopener">
-						Impressum
+						{{ __('navigation.impressum') }}
 					</a>
 				</li>
 				<li class="list-inline-item">
 					<a class="link-secondary" rel="noopener">
-						Datenschutz
-					</a>
-				</li>
-				<li class="list-inline-item">
-					<a class="link-secondary" rel="noopener">
-						AGB
+						{{ __('navigation.datenschutz') }}
 					</a>
 				</li>
 			</ul>
@@ -24,7 +19,7 @@
 			<ul class="mb-0 list-inline list-inline-dots">
 				<li class="list-inline-item">
 					Copyright © 2023 - {{date('Y')}}
-					<a href="." class="link-secondary">{{env('APP_NAME')}}</a>
+					<a href="." class="link-secondary">{{ env('APP_NAME') }}</a>
 				</li>
 				{{-- <li class="list-inline-item"> --}}
 					{{-- @TODO ChangeLog einbauen --}}

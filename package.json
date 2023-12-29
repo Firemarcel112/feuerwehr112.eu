@@ -2,15 +2,10 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"style": "sass --watch resources/scss/app.scss:public/css/custom-styles.css"
 	},
 	"devDependencies": {
 		"axios": "^1.1.2",
 		"laravel-vite-plugin": "^0.7.5",
 		"vite": "^4.0.0"
-	},
-	"dependencies": {
-		"@tabler/core": "^1.0.0-beta19",
-		"bootstrap": "^5.3.1"
 	}
 }
