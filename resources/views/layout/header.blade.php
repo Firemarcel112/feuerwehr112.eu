@@ -160,7 +160,7 @@
 					<a href="./sign-in.html" class="dropdown-item">Logout</a>
 					</div>
 				@else
-					<a class="nav-link d-flex" href="#">{{ __('general.anmelden') }} | {{ __('general.registrieren') }}</a>
+					<a class="nav-link d-flex" href="{{ route('login') }}">{{ __('general.anmelden') }} | {{ __('general.registrieren') }}</a>
 				@endif
 			</div>
 		</div>

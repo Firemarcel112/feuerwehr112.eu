@@ -1,7 +1,7 @@
 // Bootstrap
 document.addEventListener('DOMContentLoaded', () => {
 	let toggle = document.querySelector('.toggle-theme');
-	if(typeof toggle != 'undefined')
+	if(toggle != undefined)
 	{
 		toggle.addEventListener('click', () => {
 			let body = document.querySelector('body');
