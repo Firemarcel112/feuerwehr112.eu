@@ -1,81 +1,85 @@
-// Bootstrap
-document.addEventListener('DOMContentLoaded', () => {
-	let toggle = document.querySelector('.toggle-theme');
-	if(typeof toggle != 'undefined')
+common = {
+	passwortAnzeigen: function()
 	{
-		toggle.addEventListener('click', () => {
-			let body = document.querySelector('body');
-			body.classList.toggle('theme-dark');
+		var element = jQuery("input[name='passwort']");
+		if(element.length > 0)
+		{
+			element = element[0];
 
-			if(body.classList.contains('theme-dark'))
+			if(element.type === 'password')
 			{
-				localStorage.setItem('tablerTheme', 'dark');
-				body.setAttribute('data-bs-theme', 'dark');
-				var icon_moon = jQuery('.js-moon');
-				icon_moon.addClass('d-none');
-				var icon_sun = jQuery('.js-sun');
-				icon_sun.removeClass('d-none');
+				element.type = 'text';
 			}
 			else
 			{
+				element.type = 'password';
+			}
+		}
+	}
+};
+
+// Bootstrap
+document.addEventListener('DOMContentLoaded', () => {
+	$(() =>
+	{
+		$('.js-passwort_anzeigen').on('click', function(event)
+		{
+			common.passwortAnzeigen(event);
+		});
+	})
+	let toggle = jQuery('.toggle-theme');
+	if (toggle !== undefined) {
+		toggle.on('click', function() {
+			var body = $('body');
+			body.toggleClass('theme-dark');
+
+			if (body.hasClass('theme-dark')) {
+				localStorage.setItem('tablerTheme', 'dark');
+				body.attr('data-bs-theme', 'dark');
+				$('.js-moon').addClass('d-none');
+				$('.js-sun').removeClass('d-none');
+			} else {
 				localStorage.setItem('tablerTheme', 'light');
-				body.setAttribute('data-bs-theme', 'light');
-				var icon_moon = jQuery('.js-moon');
-				icon_moon.removeClass('d-none');
-				var icon_sun = jQuery('.js-sun');
-				icon_sun.addClass('d-none');
+				body.attr('data-bs-theme', 'light');
+				$('.js-moon').removeClass('d-none');
+				$('.js-sun').addClass('d-none');
 			}
 		});
 	}
 
-	if(window.matchMedia)
-	{
-		let body = document.querySelector('body');
-		if(localStorage.getItem('tablerTheme') != null)
-		{
+	if (window.matchMedia) {
+		var body = $('body');
+
+		if (localStorage.getItem('tablerTheme') !== null) {
 			var theme = localStorage.getItem('tablerTheme');
-			body.classList.add('theme-' + theme);
-			body.setAttribute('data-bs-theme', theme);
-			switch(theme)
-			{
+			body.addClass('theme-' + theme);
+			body.attr('data-bs-theme', theme);
+
+			switch (theme) {
 				case 'dark':
-					var icon_moon = jQuery('.js-moon');
-					icon_moon.addClass('d-none');
-					var icon_sun = jQuery('.js-sun');
-					icon_sun.removeClass('d-none');
+					$('.js-moon').addClass('d-none');
+					$('.js-sun').removeClass('d-none');
 					break;
 				case 'light':
-					var icon_moon = jQuery('.js-moon');
-					icon_moon.removeClass('d-none');
-					var icon_sun = jQuery('.js-sun');
-					icon_sun.addClass('d-none');
-				break;
+					$('.js-moon').removeClass('d-none');
+					$('.js-sun').addClass('d-none');
+					break;
 			}
-		}
-		else
-		{
-			if(window.matchMedia('(prefers-color-scheme: dark)').matches)
-			{
-				localStorage.setItem('tablerTheme', 'dark')
-				body.setAttribute('data-bs-theme', 'dark');
-				var icon = jQuery('.js-sun');
-				icon.addClass('d-none');
+		} else {
+			if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				localStorage.setItem('tablerTheme', 'dark');
+				body.attr('data-bs-theme', 'dark');
+				$('.js-sun').addClass('d-none');
 			}
 
-			if(window.matchMedia('(prefers-color-scheme: light)').matches)
-			{
-				let body = document.querySelector('body');
-				localStorage.setItem('tablerTheme', 'light')
-				body.setAttribute('data-bs-theme', 'light');
-				var icon = jQuery('.js-moon');
-				icon.addClass('d-none');
+			if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+				localStorage.setItem('tablerTheme', 'light');
+				body.attr('data-bs-theme', 'light');
+				$('.js-moon').addClass('d-none');
 			}
 		}
-
-	}
-	else
-	{
-		console.error('Browser doesn\'t support window.matchMedia')
+	} else {
+		console.error('Browser doesn\'t support window.matchMedia');
 	}
 });
 

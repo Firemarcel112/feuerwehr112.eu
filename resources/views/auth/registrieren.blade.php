@@ -1,71 +1,71 @@
-@extends('layout.auth')
+@extends('layout.minimal')
 
-@section('app:content')
-	<div class="card card-md">
-		<div class="card-header justify-content-center d-flex">
-			<div class="col-11"></div>
-			<div class="d-flex justify-content-center">
-				<div class="me-2">
-					<x-tag-nacht-toggle />
+@section('app')
+	<body class="d-flex flex-column">
+		<div class="page page-center">
+			<div class="container container-tight py-4">
+				@include('standard.alerts')
+				<form class="card card-md" method="POST">
+					@csrf
+					<div class="card-header">
+						<div class="row">
+							<div class="col h-24 d-flex">
+								<div class="mr-2">
+									@include('components.tag-nacht-toggle')
+								</div>
+								<div>
+									@include('components.sprachen-toggle')
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-body">
+						<h2 class="card-title text-center mb-4">{{ __('general.neuen_account_erstellen') }}</h2>
+						<div class="mb-3">
+							@include('components.form.input', [
+								'name' => __('general.benutzername'),
+								'input_name' => 'benutzername',
+								'placeholder' => 'MaxMuster112',
+								'required' => true,
+							])
+						</div>
+						<div class="mb-3">
+							@include('components.form.input', [
+								'name' => __('general.email'),
+								'type' => 'email',
+								'input_name' => 'email',
+								'placeholder' => 'max.muster@mail.de',
+								'required' => true,
+							])
+						</div>
+						<div class="mb-3">
+							@include('components.form.input', [
+								'type' => 'password',
+								'required' => true,
+							])
+						</div>
+						<div class="mb-3">
+							@include('components.form.input', [
+								'type' => 'checkbox',
+								'input_name' => 'datenschutz',
+								'required' => true,
+								'name' => __('general.datenschutz_akzeptieren', [
+									'span_open' => "<span><a href='" . route('home') . "'>",
+									'span_close' => '</a></span>',
+								]),
+							])
+						</div>
+						<div class="form-footer">
+							<button type="submit"
+								class="btn btn-primary w-100">{{ __('general.account_erstellen') }}</button>
+						</div>
+					</div>
+				</form>
+				<div class="text-center text-muted mt-3">
+					{{ __('general.bereits_registriert') }} <a href="{{ route('login') }}"
+						tabindex="-1">{{ __('general.anmelden') }}</a>
 				</div>
-				<x-sprachen-toggle />
 			</div>
 		</div>
-		<div class="card-body">
-		<h2 class="mb-4 text-center h2">{{__('general.registrieren')}}</h2>
-		<form action="{{'@TODO'}}">
-
-			<div class="mb-3">
-				<label class="form-label">
-					{{__('general.username')}}
-				</label>
-				<input type="text" class="form-control" placeholder="max.muster112">
-			</div>
-
-			<div class="mb-3">
-				<label class="form-label">
-					{{__('general.passwort')}}
-				</label>
-				<div class="input-group input-group-flat">
-					<input type="password" class="form-control" placeholder="{{__('general.passwort')}}">
-					<span class="input-group-text">
-						<a class="fw112-passwort-anzeigen link-secondary cursor-pointer" data-bs-original-title="{{__('general.passwort_anzeigen')}}" data-bs-toggle="tooltip">
-							@include('standard.icons.eye')
-						</a>
-					</span>
-				</div>
-			</div>
-
-			<div class="mb-3">
-				<label class="form-label">
-					{{__('general.passwort_wiederholen')}}
-				</label>
-				<div class="input-group input-group-flat">
-					<input type="password" class="form-control" placeholder="{{__('general.passwort_wiederholen')}}">
-					<span class="input-group-text">
-						<a class="fw112-passwort-anzeigen link-secondary cursor-pointer" data-bs-original-title="{{__('general.passwort_wiederholen')}}" data-bs-toggle="tooltip">
-							@include('standard.icons.eye')
-						</a>
-					</span>
-				</div>
-			</div>
-
-			<div class="mb-3">
-				<label class="form-label">
-					{{__('general.email')}}
-				</label>
-				<input type="text" class="form-control" placeholder="info@email.com">
-			</div>
-
-
-			<div class="form-footer">
-				<button type="submit" class="btn btn-primary w-100">{{__('general.registrieren')}}</button>
-			</div>
-		</form>
-		</div>
-	</div>
-
-	<div class="mt-3 text-center text-secondary">
-		{{__('general.schon_einen_account')}}? <a href="{{route('login')}}">{{__('general.anmelden')}}</a>
-	</div>
+	</body>
 @endsection

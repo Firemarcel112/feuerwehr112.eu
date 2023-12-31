@@ -10,8 +10,9 @@
 	<link href="{{ asset('css/tabler.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/tabler-flags.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/tabler-vendor.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
-	<script src="{{ asset('js/app.js') }}" defer></script>
-	<script src="{{ asset('js/tabler.min.js') }}" defer></script>
-	<script src="{{ asset('js/jquery-3.7.1.min.js') }}" defer></script>
+	<script src="{{ asset('js/tabler.min.js') }}"></script>
+	<script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
+	<script src="{{ asset('js/app.js') }}"></script>
 </head>

@@ -3,65 +3,66 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
+use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
-    /**
-	 * Display a listing of the resource.
-	 */
+
 	public function index()
 	{
-		return view('auth.login', [
-			'pageTitle' => __('general.seitentitel.anmelden'),
-		]);
+		if(auth()->user())
+		{
+			$this->setSuccessMessage(__('general.bereits_angemeldet'));
+			return redirect()->route('home');
+		}
+		return view('auth/login');
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function create()
+	public function authenticate(LoginRequest $request): RedirectResponse
 	{
-		//
+		$request->flash();
+
+		$user = User::isBenutzername($request->benutzername)
+			->first();
+
+		if(empty($user))
+		{
+			$this->setErrorMessage(__('general.fehler_beim_anmelden') . ' ERROR:100');
+		}
+		else
+		{
+			if(Hash::check($request->passwort, $user->getPasswort()))
+			{
+				if(empty($user->getEmailVerifiedAt()))
+				{
+					$this->setErrorMessage(__('general.email_verifizierung_fehlt'));
+					return back();
+				}
+				if($user->getGebannt() == 1)
+				{
+					$this->setErrorMessage(__('general.account_gebannt'));
+					return back();
+				}
+				Auth::loginUsingId($user->getId(), $request->erinnern);
+
+				$request->session()->regenerate();
+				return redirect()->route('home');
+			}
+		}
+		$this->setErrorMessage(__('general.fehler_beim_anmelden') . ' ERROR:101');
+		return back()->onlyInput('benutzername');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 */
-	public function store(Request $request)
+	public function logout(Request $request)
 	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 */
-	public function show(string $id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 */
-	public function edit(string $id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 */
-	public function update(Request $request, string $id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 */
-	public function destroy(string $id)
-	{
-		//
+		Auth::logout();
+		$request->session()->invalidate();
+		$request->session()->regenerate();
+		return back();
 	}
 }
