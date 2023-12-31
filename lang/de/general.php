@@ -3,7 +3,9 @@
 return [
 	'account_erfolgreich_erstellt' => 'Dein Account wurde erfolgreich erstellt, bitte verifiziere deine E-Mail',
 	'account_erstellen' => 'Account erstellen',
+	'angemeldet_bleiben' => 'Angemeldet bleiben',
 	'anmelden' => 'Anmelden',
+	'benutzername_eingeben' => 'Benutzername eingeben',
 	'benutzername_existiert_bereits' => 'Der Benutzername existiert bereits',
 	'benutzername' => 'Benutzername',
 	'bereits_bestaetigt' => 'Bereits bestätigt',
@@ -15,8 +17,10 @@ return [
 	'email_verifiziert' => 'Du hast deine E-Mail erfolgreich verifiziert',
 	'email_verifizierung' => 'E-Mail Verifizierung',
 	'email' => 'E-Mail',
+	'fehler_beim_anmelden' => 'Fehler beim anmelden',
 	'fehler_beim_link_anfordern' => 'Fehler beim anfordern des neuen Links',
 	'fehler_verifizierung' => 'Deine E-Mail ist bereits verifiziert oder du hast ungültige Daten eingegeben',
+	'keinen_account' => 'Noch keinen Account?',
 	'neuen_account_erstellen' => 'Neuen Account erstellen',
 	'neuer_link_anfordern' => 'Neuen Link anfordern',
 	'neuer_link_angefordert' => 'Du hast einen neuen Verifizierungslink angefordert',
@@ -25,4 +29,5 @@ return [
 	'token_eingeben' => 'Token eingeben',
 	'token_ist_abgelaufen' => 'Das eingegebene Token ist abgelaufen',
 	'token' => 'Token',
+    'tag_nacht_modus_umschalten' => 'Tag- Nachtmodus umschalten'
 ];

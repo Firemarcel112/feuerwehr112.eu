@@ -20,7 +20,7 @@
 
 	@case('checkbox')
 		<label @class(['form-check', ...$classes ?? []])>
-			<input type="checkbox" name="{{ $input_name ?? 'checkbox_name' }}" @class(['form-check-input', ...$input_classes ?? []]) @required(!empty($required)) />
+			<input type="checkbox" name="{{ $input_name ?? 'checkbox_name' }}" value="{{ $value?? 1 }}" @class(['form-check-input', ...$input_classes ?? []]) @required(!empty($required)) />
 			<span @class(['form-check-label', 'required' => !empty($required)])>{!! $name ?? 'MISSING_NAME' !!}</span>
 		</label>
 	@break

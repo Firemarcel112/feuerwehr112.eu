@@ -13,6 +13,7 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('login', 'Auth\LoginController@index')->name('login');
 Route::post('login', 'Auth\LoginController@authenticate');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('registrieren', 'Auth\RegistrierenController@index')->name('registrieren');
 Route::post('registrieren', 'Auth\RegistrierenController@registrieren');

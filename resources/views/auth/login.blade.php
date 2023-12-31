@@ -5,34 +5,48 @@
 		<div class="page page-center">
 			<div class="container py-4 container-tight">
 				<div class="card card-md">
+					<div class="card-header">
+						<div class="row">
+							<div class="col h-24 d-flex">
+								<div class="mr-2">
+									@include('components.tag-nacht-toggle')
+								</div>
+								<div>
+									@include('components.sprachen-toggle')
+								</div>
+							</div>
+						</div>
+					</div>
 					<div class="card-body">
-						<h2 class="mb-4 text-center h2">{{ __('general.einloggen') }}</h2>
+						<h2 class="mb-4 text-center h2">{{ __('general.anmelden') }}</h2>
 						@include('standard.alerts')
 						<form action="" method="POST" autocomplete="off" novalidate>
 							@csrf
 							<div class="mb-3">
-								<label class="form-label">{{ __('general.benutzername') }}</label>
-								<input type="text" class="form-control" name="benutzername" placeholder="maxMuster1"
-									autocomplete="off">
+								@include('components.form.input', [
+									'name' => __('general.benutzername'),
+									'input_name' => 'benutzername',
+									'required' => true,
+									'placeholder' => __('general.benutzername_eingeben'),
+								])
 							</div>
 							<div class="mb-2">
-								<label class="form-label">
-									{{ __('general.passwort') }}
-								</label>
-								<div class="input-group input-group-flat">
-									<input type="password" name="passwort" class="form-control"
-										placeholder="{{ __('general.passwort') }}" autocomplete="off">
-								</div>
+								@include('components.form.input', [
+									'name' => __('general.passwort'),
+									'type' => 'password',
+									'placeholder' => __('general.passwort_eingeben'),
+									'required' => true,
+								])
 							</div>
 							<div class="mb-2">
-								<label class="form-check">
-									<input type="checkbox" name="erinnern" class="form-check-input" />
-									<span class="form-check-label">{{ __('general.angemeldet_bleiben') }}</span>
-
-								</label>
+								@include('components.form.input', [
+									'name' => __('general.angemeldet_bleiben'),
+									'type' => 'checkbox',
+									'input_name' => 'erinnern',
+								])
 							</div>
 							<div class="form-footer">
-								<button type="submit" class="btn btn-primary w-100">{{ __('general.einloggen') }}</button>
+								<button type="submit" class="btn btn-primary w-100">{{ __('general.anmelden') }}</button>
 							</div>
 						</form>
 					</div>
