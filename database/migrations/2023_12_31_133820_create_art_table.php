@@ -1,0 +1,29 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+	/**
+	 * Run the migrations.
+	 */
+	public function up(): void
+	{
+		Schema::create('leitstellen_arten', function (Blueprint $table) {
+			$table->tinyInteger('id', true);
+			$table->string('name');
+			$table->string('kuerzel')->nullable();
+			$table->timestamps();
+		});
+	}
+
+	/**
+	 * Reverse the migrations.
+	 */
+	public function down(): void
+	{
+		Schema::dropIfExists('leitstellen_arten');
+	}
+};
