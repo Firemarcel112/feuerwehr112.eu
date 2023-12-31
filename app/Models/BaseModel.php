@@ -1,9 +1,9 @@
 <?php
 namespace App\Models;
 
-use Illuminate\Support\Facades\Cache;
-use Monolog\Logger;
+use App\Traits\MessageTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Rennokki\QueryCache\Traits\QueryCacheable;
 
 /**
@@ -11,7 +11,8 @@ use Rennokki\QueryCache\Traits\QueryCacheable;
  */
 class BaseModel extends Model
 {
-	use QueryCacheable;
+	use QueryCacheable,
+		MessageTrait;
 
 	protected $column_prefix;
 

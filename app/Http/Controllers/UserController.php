@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\User;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 
-class PasswordVergessenController extends Controller
+class UserController extends Controller
 {
 	/**
 	 * Display a listing of the resource.
 	 */
 	public function index()
 	{
-		return view('auth.passwort_vergessen', [
-			'pageTitle' => __('general.seitentitel.passwort_vergessen'),
-		]);
+		//
 	}
 
 	/**
@@ -28,7 +27,7 @@ class PasswordVergessenController extends Controller
 	/**
 	 * Store a newly created resource in storage.
 	 */
-	public function store(Request $request)
+	public function store(StoreUserRequest $request)
 	{
 		//
 	}
@@ -36,7 +35,7 @@ class PasswordVergessenController extends Controller
 	/**
 	 * Display the specified resource.
 	 */
-	public function show(string $id)
+	public function show(User $user)
 	{
 		//
 	}
@@ -44,7 +43,7 @@ class PasswordVergessenController extends Controller
 	/**
 	 * Show the form for editing the specified resource.
 	 */
-	public function edit(string $id)
+	public function edit(User $user)
 	{
 		//
 	}
@@ -52,7 +51,7 @@ class PasswordVergessenController extends Controller
 	/**
 	 * Update the specified resource in storage.
 	 */
-	public function update(Request $request, string $id)
+	public function update(UpdateUserRequest $request, User $user)
 	{
 		//
 	}
@@ -60,7 +59,7 @@ class PasswordVergessenController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function destroy(string $id)
+	public function destroy(User $user)
 	{
 		//
 	}
