@@ -9,6 +9,8 @@ class {{ class }} extends BaseModel
 {
 	use HasFactory;
 
+	protected $table = "{{ class }}";
+
 	static public $fields = [
 
 	];
