@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Events\NeuerBenutzer;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegistrierenRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\View\View;
 
 class RegistrierenController extends Controller
 {
@@ -15,10 +15,14 @@ class RegistrierenController extends Controller
 	/**
 	 * Index funktion
 	 *
-	 * @return View
 	 */
-	public function index(): View
+	public function index()
 	{
+		if(auth()->user())
+		{
+			$this->setSuccessMessage(__('general.bereits_angemeldet'));
+			return redirect()->route('home');
+		}
 		return view('auth.registrieren');
 	}
 
@@ -27,9 +31,8 @@ class RegistrierenController extends Controller
 	 *
 	 * @param Request $request
 	 */
-	public function registrieren(Request $request)
+	public function registrieren(RegistrierenRequest $request)
 	{
-		$this->log('registrierung gestartet');
 		$request->flash();
 		$error = false;
 		$user = new User();

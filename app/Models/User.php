@@ -369,4 +369,23 @@ class User extends Authenticatable
 		return $this->getAliasValue('updated_at');
 	}
 
+	public function setGebannt(int $gebannt) : void
+	{
+		$this->setAliasValue($gebannt, 'gebannt');
+	}
+
+	public function getGebannt() : int
+	{
+		return $this->getAliasValue('gebannt');
+	}
+
+	public function setDeletedAt($deleted_at) : void
+	{
+		$this->setAliasValue($deleted_at, 'deleted_at');
+	}
+
+	public function getDeletedAt()
+	{
+		return $this->getAliasValue('deleted_at');
+	}
 }

@@ -1,3 +1,7 @@
+@if(!empty(auth()->user()))
+	@php $_user = auth()->user() @endphp
+@endif
+
 <header class="navbar navbar-expand-md d-print-none">
 	<div class="container-xl">
 		{{-- Mobile Navigation --}}
@@ -147,7 +151,7 @@
 					<span class="avatar avatar-sm"
 						style="background-image: url(./static/avatars/000m.jpg)"></span>
 					<div class="d-none d-xl-block ps-2">
-						<div>Paweł Kuna</div>
+						<div>{{ $_user->getBenutzername() }}</div>
 						<div class="mt-1 small text-muted">UI Designer</div>
 					</div>
 					</a>
@@ -157,7 +161,7 @@
 					<a href="#" class="dropdown-item">Feedback</a>
 					<div class="dropdown-divider"></div>
 					<a href="./settings.html" class="dropdown-item">Settings</a>
-					<a href="./sign-in.html" class="dropdown-item">Logout</a>
+					<a href="{{ route('logout') }}" class="dropdown-item">{{ __('general.abmelden') }}</a>
 					</div>
 				@else
 					<a class="nav-link d-flex" href="{{ route('login') }}">{{ __('general.anmelden') }} | {{ __('general.registrieren') }}</a>
@@ -177,7 +181,7 @@
 							'sprach_key' => 'startseite',
 						])
 				</ul>
-                {{-- Suchbar --}}
+				{{-- Suchbar --}}
 				{{-- <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
 					<form action="./" method="get" autocomplete="off" novalidate>
 						<div class="input-icon">

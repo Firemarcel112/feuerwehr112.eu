@@ -75,6 +75,18 @@ class EmailVerifizierung extends BaseModel
 		return $query->where(self::getFieldName('token'), $token);
 	}
 
+	/**
+	 * Scope für User Id
+	 *
+	 * @param Builder $query
+	 * @param string $user_id
+	 * @return Builder
+	 */
+	public function scopeIsUserId(Builder $query, string $user_id): Builder
+	{
+		return $query->where(self::getFieldName('user_id'), $user_id);
+	}
+
 	########################
 	# RELATIONS
 	########################

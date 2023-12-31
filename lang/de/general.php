@@ -1,13 +1,16 @@
 <?php
 
 return [
+	'abmelden' => 'Abmelden',
 	'account_erfolgreich_erstellt' => 'Dein Account wurde erfolgreich erstellt, bitte verifiziere deine E-Mail',
 	'account_erstellen' => 'Account erstellen',
+	'account_gebannt' => 'Dein Account ist in unserem System gebannt, bitte wende dich an unseren Support',
 	'angemeldet_bleiben' => 'Angemeldet bleiben',
 	'anmelden' => 'Anmelden',
 	'benutzername_eingeben' => 'Benutzername eingeben',
 	'benutzername_existiert_bereits' => 'Der Benutzername existiert bereits',
 	'benutzername' => 'Benutzername',
+	'bereits_angemeldet' => 'Du bist bereits angemeldet',
 	'bereits_bestaetigt' => 'Bereits bestätigt',
 	'bereits_registriert' => 'Bereits registriert?',
 	'bestaetigen' => 'bestätigen',
@@ -15,6 +18,7 @@ return [
 	'email_eingeben' => 'E-Mail eingeben',
 	'email_existiert_bereits' => 'Die E-Mail Adresse gehört bereits zu einem Benutzeraccount',
 	'email_verifiziert' => 'Du hast deine E-Mail erfolgreich verifiziert',
+	'email_verifizierung_fehlt' => 'Deine E-Mail ist noch nicht verifiziert, verifiziere sie bevor du dich einloggen kannst',
 	'email_verifizierung' => 'E-Mail Verifizierung',
 	'email' => 'E-Mail',
 	'fehler_beim_anmelden' => 'Fehler beim anmelden',
@@ -22,12 +26,12 @@ return [
 	'fehler_verifizierung' => 'Deine E-Mail ist bereits verifiziert oder du hast ungültige Daten eingegeben',
 	'keinen_account' => 'Noch keinen Account?',
 	'neuen_account_erstellen' => 'Neuen Account erstellen',
-	'neuer_link_anfordern' => 'Neuen Link anfordern',
+	'neuen_link_anfordern' => 'Neuen Link anfordern',
 	'neuer_link_angefordert' => 'Du hast einen neuen Verifizierungslink angefordert',
 	'passwort' => 'Passwort',
 	'registrieren' => 'Registrieren',
+	'tag_nacht_modus_umschalten' => 'Tag- Nachtmodus umschalten',
 	'token_eingeben' => 'Token eingeben',
 	'token_ist_abgelaufen' => 'Das eingegebene Token ist abgelaufen',
 	'token' => 'Token',
-    'tag_nacht_modus_umschalten' => 'Tag- Nachtmodus umschalten'
 ];

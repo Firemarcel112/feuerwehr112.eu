@@ -15,6 +15,11 @@ class LoginController extends Controller
 
 	public function index()
 	{
+		if(auth()->user())
+		{
+			$this->setSuccessMessage(__('general.bereits_angemeldet'));
+			return redirect()->route('home');
+		}
 		return view('auth/login');
 	}
 
@@ -27,19 +32,29 @@ class LoginController extends Controller
 
 		if(empty($user))
 		{
-			$this->setErrorMessage(__('general.fehler_beim_anmelden'));
+			$this->setErrorMessage(__('general.fehler_beim_anmelden') . ' ERROR:100');
 		}
 		else
 		{
 			if(Hash::check($request->passwort, $user->getPasswort()))
 			{
+				if(empty($user->getEmailVerifiedAt()))
+				{
+					$this->setErrorMessage(__('general.email_verifizierung_fehlt'));
+					return back();
+				}
+				if($user->getGebannt() == 1)
+				{
+					$this->setErrorMessage(__('general.account_gebannt'));
+					return back();
+				}
 				Auth::loginUsingId($user->getId(), $request->erinnern);
 
 				$request->session()->regenerate();
 				return redirect()->route('home');
 			}
 		}
-		$this->setErrorMessage(__('general.fehler_beim_anmelden'));
+		$this->setErrorMessage(__('general.fehler_beim_anmelden') . ' ERROR:101');
 		return back()->onlyInput('benutzername');
 	}
 
