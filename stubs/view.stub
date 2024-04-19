@@ -1,0 +1,17 @@
+@extends('layout.app')
+
+@section('pre_title')
+	Default PreTitle
+@endsection
+
+@section('page_title')
+	Default PageTitle
+@endsection
+
+@section('content')
+
+	<div class="row">
+
+	</div>
+
+@endsection

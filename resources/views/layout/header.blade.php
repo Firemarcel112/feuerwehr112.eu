@@ -1,7 +1,3 @@
-@if(!empty(auth()->user()))
-	@php $_user = auth()->user() @endphp
-@endif
-
 <header class="navbar navbar-expand-md d-print-none">
 	<div class="container-xl">
 		{{-- Mobile Navigation --}}
@@ -20,7 +16,7 @@
 				@include('components.tag-nacht-toggle')
 				@include('components.sprachen-toggle')
 				</a>
-				@if(Auth::check())
+				@if(auth()->user())
 					<div class="nav-item dropdown d-none d-md-flex me-3">
 						<a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
 							aria-label="Show notifications">
@@ -145,26 +141,41 @@
 				@endif
 			</div>
 			<div class="nav-item dropdown">
-				@if(Auth::check())
+				@if(auth()->user())
 					<a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
 					aria-label="Open user menu">
-					<span class="avatar avatar-sm"
-						style="background-image: url(./static/avatars/000m.jpg)"></span>
+					@if(!empty(auth()?->user()?->profil?->getAvatarPfad()))
+						<img class="avatar avatar-sm" src="{{ asset(auth()->user()->profil->getAvatarPfad()) }}">
+					@else
+						<span class="avatar avatar-sm">
+							{{ substr(auth()->user()->getBenutzername(), 0, 2) }}
+						</span>
+					@endif
 					<div class="d-none d-xl-block ps-2">
-						<div>{{ $_user->getBenutzername() }}</div>
-						<div class="mt-1 small text-muted">UI Designer</div>
+						<div>
+							{{ auth()->user()->getBenutzername() }}
+						</div>
+						<div class="mt-1 small text-muted">
+							Administrator
+						</div>
 					</div>
 					</a>
 					<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+						<a href="{{ route('profil.index', ['benutzername' => auth()->user()->getBenutzername()]) }}" class="dropdown-item">
+							{{ __('general.profil') }}
+						</a>
 					<a href="#" class="dropdown-item">Status</a>
-					<a href="./profile.html" class="dropdown-item">Profile</a>
 					<a href="#" class="dropdown-item">Feedback</a>
 					<div class="dropdown-divider"></div>
 					<a href="./settings.html" class="dropdown-item">Settings</a>
-					<a href="{{ route('logout') }}" class="dropdown-item">{{ __('general.abmelden') }}</a>
+					<a href="{{ route('logout') }}" class="dropdown-item">
+						{{ __('general.abmelden') }}
+					</a>
 					</div>
 				@else
-					<a class="nav-link d-flex" href="{{ route('login') }}">{{ __('general.anmelden') }} | {{ __('general.registrieren') }}</a>
+					<a class="nav-link d-flex" href="{{ route('login') }}">
+						{{ __('general.anmelden') }} | {{ __('general.registrieren') }}
+					</a>
 				@endif
 			</div>
 		</div>

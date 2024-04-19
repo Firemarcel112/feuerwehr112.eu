@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Benutzer\Profil\Profil;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -252,6 +253,16 @@ class User extends Authenticatable
 		return parent::delete();
 	}
 
+	public function isNeu()
+	{
+		$erstellt_am = $this->getCreatedAt();
+		if ($erstellt_am->isSameDay(now()) || now()->diffInDays($erstellt_am) <= 7)
+		{
+			return true;
+		}
+		return false;
+	}
+
 	########################
 	# SCOPES
 	########################
@@ -266,6 +277,17 @@ class User extends Authenticatable
 	public function scopeIsBenutzername(Builder $query, string $benutzername): Builder
 	{
 		return $query->where(self::getFieldName('benutzername'), $benutzername);
+	}
+
+	/**
+	 * Scope für sichtbarkeit
+	 *
+	 * @param Builder $query
+	 * @return Builder
+	 */
+	public function scopeIsSichtbar(Builder $query): Builder
+	{
+		return $query->where(self::getFieldName('sichtbar'), 1);
 	}
 
 	/**
@@ -287,6 +309,11 @@ class User extends Authenticatable
 	public function emailverifizierung(): HasOne
 	{
 		return $this->hasOne(EmailVerifizierung::class);
+	}
+
+	public function profil(): HasOne
+	{
+		return $this->hasOne(Profil::class);
 	}
 
 

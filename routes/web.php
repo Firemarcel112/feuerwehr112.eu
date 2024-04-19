@@ -17,9 +17,17 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('registrieren', 'Auth\RegistrierenController@index')->name('registrieren');
 Route::post('registrieren', 'Auth\RegistrierenController@registrieren');
-Route::prefix('verifizierung')->as('verifizierung.')->group(function()
+Route::prefix('verifizierung')->as('verifizierung.')
+	->controller('EmailVerifizierungController')->group(function()
 {
-	Route::get('email', 'EmailVerifizierungController@index')->name('email');
-	Route::post('email', 'EmailVerifizierungController@bestaetigen');
+	Route::get('email', 'index')->name('email');
+	Route::post('email', 'bestaetigen');
 });
 
+Route::prefix('profil')->as('profil.')
+	->controller('Profil\ProfilController')->group(function()
+{
+	Route::get('{benutzername}', 'index')->name('index');
+
+	Route::get('{benutzername}/bearbeiten', 'edit')->name('bearbeiten');
+});

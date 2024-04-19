@@ -4,15 +4,13 @@ namespace App\Models;
 use App\Traits\MessageTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
-use Rennokki\QueryCache\Traits\QueryCacheable;
 
 /**
  * Standardmodel Klasse für Models in Laravel
  */
 class BaseModel extends Model
 {
-	use QueryCacheable,
-		MessageTrait;
+	use MessageTrait;
 
 	protected $column_prefix;
 
@@ -45,7 +43,7 @@ class BaseModel extends Model
 	 * Fügt einen neue Tags für das Audit hinzu
 	 *
 	 * @param string $tag
-	 * @return FinanceAdsModel
+	 * @return BaseModel
 	 */
 	public function addAuditTags(string $tag)
 	{
